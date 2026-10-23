@@ -1,0 +1,2 @@
+# DualSense Controller Manager GUI
+PyQt6>=6.5.0
