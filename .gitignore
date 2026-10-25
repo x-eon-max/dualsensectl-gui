@@ -71,3 +71,14 @@ Thumbs.db
 hackios-kernel/
 hackios-pixel8/
 zuma-dts/
+hackios-shiba-lab/
+
+# CMake / C++ build outputs
+build/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.a
+*.so
+.qmake.stash
+
