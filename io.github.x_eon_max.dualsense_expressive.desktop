@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DualSense Expressive
+GenericName=PlayStation 5 Controller Manager
+Comment=Manage adaptive triggers, lightbar, audio and battery with Material 3 Expressive
+Exec=dualsense-expressive
+Icon=io.github.x_eon_max.dualsense_expressive
+Terminal=false
+Type=Application
+Categories=Utility;Settings;HardwareSettings;Game;
+Keywords=dualsense;dualsensectl;playstation;ps5;gamepad;controller;rgb;triggers;
+StartupNotify=true

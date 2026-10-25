@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <!-- Theme & Tokens -->
+        <file alias="ui/theme/ExpressiveTokens.qml">../ui/theme/ExpressiveTokens.qml</file>
+
+        <!-- Components -->
+        <file alias="ui/components/ExpressiveButton.qml">../ui/components/ExpressiveButton.qml</file>
+        <file alias="ui/components/ExpressiveCard.qml">../ui/components/ExpressiveCard.qml</file>
+        <file alias="ui/components/ExpressiveSlider.qml">../ui/components/ExpressiveSlider.qml</file>
+        <file alias="ui/components/ExpressiveSwitch.qml">../ui/components/ExpressiveSwitch.qml</file>
+        <file alias="ui/components/ExpressiveChip.qml">../ui/components/ExpressiveChip.qml</file>
+        <file alias="ui/components/StatusBadge.qml">../ui/components/StatusBadge.qml</file>
+        <file alias="ui/components/ColorWheel.qml">../ui/components/ColorWheel.qml</file>
+        <file alias="ui/components/InteractiveDualSense.qml">../ui/components/InteractiveDualSense.qml</file>
+        <file alias="ui/components/TriggerVisualizer.qml">../ui/components/TriggerVisualizer.qml</file>
+        <file alias="ui/components/NotificationToast.qml">../ui/components/NotificationToast.qml</file>
+        <file alias="ui/components/ExpressiveFAB.qml">../ui/components/ExpressiveFAB.qml</file>
+
+        <!-- Views -->
+        <file alias="ui/views/DashboardView.qml">../ui/views/DashboardView.qml</file>
+        <file alias="ui/views/TriggersView.qml">../ui/views/TriggersView.qml</file>
+        <file alias="ui/views/LightingView.qml">../ui/views/LightingView.qml</file>
+        <file alias="ui/views/AudioView.qml">../ui/views/AudioView.qml</file>
+        <file alias="ui/views/ProfilesView.qml">../ui/views/ProfilesView.qml</file>
+
+        <!-- Main App Window -->
+        <file alias="ui/App.qml">../ui/App.qml</file>
+
+        <!-- Assets -->
+        <file alias="icons/app-icon.svg">icons/app-icon.svg</file>
+        <file alias="icons/dualsense.svg">icons/dualsense.svg</file>
+    </qresource>
+</RCC>

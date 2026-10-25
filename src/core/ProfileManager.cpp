@@ -187,13 +187,13 @@ void ProfileManager::applyProfile(const QString &name) {
             if (mode == "off") {
                 m_client->setTriggerOff("both");
             } else if (mode == "weapon") {
-                m_client->setTriggerWeapon("both", p["wpStart"].toInt(2), p["wpStop"].toInt(4), p["wpStr"].toInt(8));
+                m_client->setTriggerWeapon("both", p.value("wpStart", 2).toInt(), p.value("wpStop", 4).toInt(), p.value("wpStr", 8).toInt());
             } else if (mode == "bow") {
-                m_client->setTriggerBow("both", p["bowStart"].toInt(0), p["bowStop"].toInt(8), p["bowStr"].toInt(6), p["bowSnap"].toInt(8));
+                m_client->setTriggerBow("both", p.value("bowStart", 0).toInt(), p.value("bowStop", 8).toInt(), p.value("bowStr", 6).toInt(), p.value("bowSnap", 8).toInt());
             } else if (mode == "machine") {
-                m_client->setTriggerMachine("both", p["mStart"].toInt(1), p["mStop"].toInt(7), p["mStrA"].toInt(2), p["mStrB"].toInt(7), p["mFreq"].toInt(15), p["mPeriod"].toInt(2));
+                m_client->setTriggerMachine("both", p.value("mStart", 1).toInt(), p.value("mStop", 7).toInt(), p.value("mStrA", 2).toInt(), p.value("mStrB", 7).toInt(), p.value("mFreq", 15).toInt(), p.value("mPeriod", 2).toInt());
             } else if (mode == "feedback") {
-                m_client->setTriggerFeedback("both", p["fbPos"].toInt(3), p["fbStr"].toInt(4));
+                m_client->setTriggerFeedback("both", p.value("fbPos", 3).toInt(), p.value("fbStr", 4).toInt());
             } else if (mode == "racing") {
                 m_client->setTriggerFeedback("left", 2, 7); // Brake resistance
                 m_client->setTriggerBow("right", 0, 8, 4, 6); // Throttle spring tension

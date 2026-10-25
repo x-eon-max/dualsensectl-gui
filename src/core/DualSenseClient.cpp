@@ -1,6 +1,7 @@
 #include "DualSenseClient.h"
 #include <QStandardPaths>
 #include <QRegularExpression>
+#include <QFile>
 #include <QDebug>
 #include <algorithm>
 
