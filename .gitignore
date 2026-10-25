@@ -83,4 +83,5 @@ CMakeCache.txt
 .qmake.stash
 dualsense-expressive
 dualsensectl-gui
+*.tar.gz
 
