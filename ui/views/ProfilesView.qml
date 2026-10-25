@@ -37,14 +37,14 @@ Item {
                     ColumnLayout {
                         spacing: 4
                         Text {
-                            text: "⚡ GESTIONNAIRE DE PROFILS DE JEU"
+                            text: "⚡ GAMING PROFILES MANAGER"
                             color: ExpressiveTokens.textSurface
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 18
                             font.weight: Font.Black
                         }
                         Text {
-                            text: "Basculez instantanément entre vos configurations personnalisées selon le jeu lancé"
+                            text: "Instant 1-click profiles optimized for competitive shooters, sim racing, and immersion"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 13
@@ -54,7 +54,7 @@ Item {
                     Item { Layout.fillWidth: true }
 
                     ExpressiveButton {
-                        text: "+ Enregistrer l'état actuel"
+                        text: "+ Save Current State"
                         variant: "primary"
                         onClicked: root.showSaveDialog = true
                     }
@@ -74,7 +74,7 @@ Item {
                     spacing: 12
 
                     Text {
-                        text: "💾 ENREGISTRER UN NOUVEAU PROFIL"
+                        text: "💾 SAVE NEW PROFILE"
                         color: ExpressiveTokens.primary
                         font.pixelSize: 12
                         font.weight: Font.Bold
@@ -104,7 +104,7 @@ Item {
                                 Text {
                                     anchors.fill: parent
                                     verticalAlignment: Text.AlignVCenter
-                                    text: "Nom du profil (ex: Cyberpunk 2077, Elden Ring...)"
+                                    text: "Profile Name (e.g. Cyberpunk 2077, Elden Ring...)"
                                     color: ExpressiveTokens.textSurfaceMuted
                                     visible: !inputName.text && !inputName.activeFocus
                                     font.pixelSize: 13
@@ -113,11 +113,11 @@ Item {
                         }
 
                         ExpressiveButton {
-                            text: "Sauvegarder"
+                            text: "Save Profile"
                             variant: "primary"
                             onClicked: {
                                 if (inputName.text.trim() !== "") {
-                                    profiles.saveProfile(inputName.text.trim(), "Profil utilisateur personnalisé", "#7B5CFF")
+                                    profiles.saveProfile(inputName.text.trim(), "Custom user profile", "#7B5CFF")
                                     inputName.text = ""
                                     root.showSaveDialog = false
                                 }
@@ -125,7 +125,7 @@ Item {
                         }
 
                         ExpressiveButton {
-                            text: "Annuler"
+                            text: "Cancel"
                             variant: "outlined"
                             onClicked: root.showSaveDialog = false
                         }
@@ -177,7 +177,7 @@ Item {
 
                                 StatusBadge {
                                     visible: root.activeProfile === modelData.name
-                                    text: "ACTIF"
+                                    text: "ACTIVE"
                                     dotColor: modelData.accentColor
                                 }
                             }
@@ -197,7 +197,7 @@ Item {
                                 spacing: 10
 
                                 ExpressiveButton {
-                                    text: (root.activeProfile === modelData.name) ? "✓ Appliqué" : "⚡ Activer ce profil"
+                                    text: (root.activeProfile === modelData.name) ? "✓ Active" : "⚡ Apply Profile"
                                     variant: (root.activeProfile === modelData.name) ? "tonal" : "primary"
                                     accentColor: modelData.accentColor
                                     onClicked: profiles.applyProfile(modelData.name)
@@ -207,7 +207,7 @@ Item {
 
                                 ExpressiveButton {
                                     visible: modelData.icon === "custom"
-                                    text: "Supprimer"
+                                    text: "Delete"
                                     variant: "danger"
                                     onClicked: profiles.deleteProfile(modelData.name)
                                 }

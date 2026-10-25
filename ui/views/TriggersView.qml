@@ -134,7 +134,7 @@ Item {
                             font.weight: Font.Black
                         }
                         Text {
-                            text: "Contrôle micrométrique des servomoteurs L2 et R2 (Résistance, Cran de tir, Tension d'arc, Recul)"
+                            text: "Micrometric control of L2 & R2 servomotors (Resistance, Firearm Break, Bow Tension, Recoil)"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 13
@@ -146,19 +146,19 @@ Item {
                     // Target Trigger Selector
                     RowLayout {
                         spacing: 8
-                        Text { text: "Cible :"; color: ExpressiveTokens.textSurface; font.weight: Font.Bold; font.pixelSize: 13 }
+                        Text { text: "Target:"; color: ExpressiveTokens.textSurface; font.weight: Font.Bold; font.pixelSize: 13 }
                         ExpressiveChip {
-                            text: "Gauche (L2)"
+                            text: "Left (L2)"
                             selected: root.targetTrigger === "left"
                             onClicked: root.targetTrigger = "left"
                         }
                         ExpressiveChip {
-                            text: "Droite (R2)"
+                            text: "Right (R2)"
                             selected: root.targetTrigger === "right"
                             onClicked: root.targetTrigger = "right"
                         }
                         ExpressiveChip {
-                            text: "Les Deux (L2 + R2)"
+                            text: "Both (L2 + R2)"
                             selected: root.targetTrigger === "both"
                             onClicked: root.targetTrigger = "both"
                         }
@@ -177,7 +177,7 @@ Item {
                     spacing: 10
 
                     Text {
-                        text: "⚡ PRÉRÉGLAGES :"
+                        text: "⚡ PRESETS:"
                         color: ExpressiveTokens.textSurfaceMuted
                         font.family: ExpressiveTokens.fontFamily
                         font.pixelSize: 11
@@ -195,14 +195,14 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: 8
 
-                            ExpressiveChip { text: "🔫 Pistolet Semi-Auto"; onClicked: applyPreset("handgun") }
-                            ExpressiveChip { text: "💥 Fusil à Pompe Lourd"; onClicked: applyPreset("shotgun") }
-                            ExpressiveChip { text: "🎯 Résistance Sniper"; onClicked: applyPreset("sniper") }
-                            ExpressiveChip { text: "🏹 Arc Élastique"; onClicked: applyPreset("bow") }
-                            ExpressiveChip { text: "🔥 Mitrailleuse Lourde"; onClicked: applyPreset("machine") }
-                            ExpressiveChip { text: "🐎 Galop de Cheval"; onClicked: applyPreset("gallop") }
-                            ExpressiveChip { text: "⚡ Bourdonnement Moteur"; onClicked: applyPreset("vibration") }
-                            ExpressiveChip { text: "⚪ Aucun Effet (Off)"; onClicked: applyPreset("off") }
+                            ExpressiveChip { text: "🔫 Semi-Auto Handgun"; onClicked: applyPreset("handgun") }
+                            ExpressiveChip { text: "💥 Heavy Shotgun"; onClicked: applyPreset("shotgun") }
+                            ExpressiveChip { text: "🎯 Sniper Resistance"; onClicked: applyPreset("sniper") }
+                            ExpressiveChip { text: "🏹 Compound Bow"; onClicked: applyPreset("bow") }
+                            ExpressiveChip { text: "🔥 Heavy Machine Gun"; onClicked: applyPreset("machine") }
+                            ExpressiveChip { text: "🐎 Horse Gallop"; onClicked: applyPreset("gallop") }
+                            ExpressiveChip { text: "⚡ Engine Vibration"; onClicked: applyPreset("vibration") }
+                            ExpressiveChip { text: "⚪ Disabled (Off)"; onClicked: applyPreset("off") }
                         }
                     }
                 }
@@ -219,19 +219,19 @@ Item {
                     spacing: 8
 
                     Text {
-                        text: "Mode : "
+                        text: "Mode: "
                         color: ExpressiveTokens.textSurfaceMuted
                         font.family: ExpressiveTokens.fontFamily
                         font.pixelSize: 12
                         font.weight: Font.Bold
                     }
 
-                    ExpressiveChip { text: "Désactivé (Off)"; selected: root.activeMode === "off"; onClicked: root.activeMode = "off" }
-                    ExpressiveChip { text: "Résistance (Feedback)"; selected: root.activeMode === "feedback"; onClicked: root.activeMode = "feedback" }
-                    ExpressiveChip { text: "Arme à Feu (Weapon)"; selected: root.activeMode === "weapon"; onClicked: root.activeMode = "weapon" }
-                    ExpressiveChip { text: "Corde d'Arc (Bow)"; selected: root.activeMode === "bow"; onClicked: root.activeMode = "bow" }
-                    ExpressiveChip { text: "Mitrailleuse (Machine)"; selected: root.activeMode === "machine"; onClicked: root.activeMode = "machine" }
-                    ExpressiveChip { text: "Galop (Galloping)"; selected: root.activeMode === "galloping"; onClicked: root.activeMode = "galloping" }
+                    ExpressiveChip { text: "Disabled (Off)"; selected: root.activeMode === "off"; onClicked: root.activeMode = "off" }
+                    ExpressiveChip { text: "Resistance (Feedback)"; selected: root.activeMode === "feedback"; onClicked: root.activeMode = "feedback" }
+                    ExpressiveChip { text: "Firearm (Weapon)"; selected: root.activeMode === "weapon"; onClicked: root.activeMode = "weapon" }
+                    ExpressiveChip { text: "Bowstring (Bow)"; selected: root.activeMode === "bow"; onClicked: root.activeMode = "bow" }
+                    ExpressiveChip { text: "Machine Gun"; selected: root.activeMode === "machine"; onClicked: root.activeMode = "machine" }
+                    ExpressiveChip { text: "Galloping"; selected: root.activeMode === "galloping"; onClicked: root.activeMode = "galloping" }
                     ExpressiveChip { text: "Vibration"; selected: root.activeMode === "vibration"; onClicked: root.activeMode = "vibration" }
                 }
             }
@@ -252,7 +252,7 @@ Item {
                         spacing: 14
 
                         Text {
-                            text: "PARAMÈTRES DU MODE " + root.activeMode.toUpperCase()
+                            text: "PARAMETERS FOR " + root.activeMode.toUpperCase()
                             color: ExpressiveTokens.primary
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 13
@@ -264,7 +264,7 @@ Item {
                             visible: root.activeMode === "off"
                             spacing: 8
                             Text {
-                                text: "Les servomoteurs des gâchettes sont désactivés. La course des gâchettes reste fluide avec la résistance du ressort standard."
+                                text: "The trigger servomotors are disengaged. Trigger travel remains smooth with standard spring tension."
                                 color: ExpressiveTokens.textSurfaceMuted
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -279,11 +279,11 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Position de départ du mur (0-9)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Wall Start Position (0-9)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 9; value: root.fbPos; onMoved: function(v){ root.fbPos = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Force de résistance (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Resistance Strength (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.fbStr; onMoved: function(v){ root.fbStr = Math.round(v) } }
                             }
                         }
@@ -295,15 +295,15 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Début de la détente (2-7)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Actuation Start (2-7)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 2; to: 7; value: root.wpStart; onMoved: function(v){ root.wpStart = Math.round(v); if(root.wpStop <= root.wpStart) root.wpStop = root.wpStart + 1 } }
                             }
                             RowLayout {
-                                Text { text: "Rupture du coup sec (Stop: 3-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Break Point (Stop: 3-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: root.wpStart + 1; to: 8; value: root.wpStop; onMoved: function(v){ root.wpStop = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Dureté de l'actionnement (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Break Strength (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.wpStr; onMoved: function(v){ root.wpStr = Math.round(v) } }
                             }
                         }
@@ -315,19 +315,19 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Début d'étirement (0-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Pull Start (0-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 8; value: root.bowStart; onMoved: function(v){ root.bowStart = Math.round(v); if(root.bowStop <= root.bowStart) root.bowStop = root.bowStart + 1 } }
                             }
                             RowLayout {
-                                Text { text: "Fin de traction (Stop: 1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Full Draw (Stop: 1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: root.bowStart + 1; to: 8; value: root.bowStop; onMoved: function(v){ root.bowStop = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Tension de corde (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "String Tension (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.bowStr; onMoved: function(v){ root.bowStr = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Force de relâche (Snap: 1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Snap Release Force (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.bowSnap; onMoved: function(v){ root.bowSnap = Math.round(v) } }
                             }
                         }
@@ -339,17 +339,17 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Course Début / Fin"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Travel Start / Stop"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 7; value: root.mStart; onMoved: function(v){ root.mStart = Math.round(v) } }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 2; to: 8; value: root.mStop; onMoved: function(v){ root.mStop = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Forces A & B (0-7)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Strengths A & B (0-7)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 7; value: root.mStrA; onMoved: function(v){ root.mStrA = Math.round(v) } }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 7; value: root.mStrB; onMoved: function(v){ root.mStrB = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Fréquence (1-20 Hz)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Frequency (1-20 Hz)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 20; value: root.mFreq; onMoved: function(v){ root.mFreq = Math.round(v) } }
                             }
                         }
@@ -361,7 +361,7 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Battements Pied 1 & 2"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Beats Foot 1 & 2"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 8; value: root.galF1; onMoved: function(v){ root.galF1 = Math.round(v) } }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.galF2; onMoved: function(v){ root.galF2 = Math.round(v) } }
                             }
@@ -378,15 +378,15 @@ Item {
                             Layout.fillWidth: true
 
                             RowLayout {
-                                Text { text: "Position centrale (0-9)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Center Position (0-9)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 0; to: 9; value: root.vibPos; onMoved: function(v){ root.vibPos = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Amplitude d'oscillation (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Oscillation Amplitude (1-8)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 8; value: root.vibAmp; onMoved: function(v){ root.vibAmp = Math.round(v) } }
                             }
                             RowLayout {
-                                Text { text: "Fréquence moteur (1-40 Hz)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
+                                Text { text: "Motor Frequency (1-40 Hz)"; color: ExpressiveTokens.textSurface; Layout.preferredWidth: 200; font.pixelSize: 12 }
                                 ExpressiveSlider { Layout.fillWidth: true; from: 1; to: 40; value: root.vibFreq; onMoved: function(v){ root.vibFreq = Math.round(v) } }
                             }
                         }
@@ -399,12 +399,12 @@ Item {
                             spacing: 12
                             ExpressiveButton {
                                 Layout.fillWidth: true
-                                text: "⚡ Appliquer l'effet aux gâchettes"
+                                text: "⚡ Apply Trigger Effect"
                                 variant: "primary"
                                 onClicked: root.applyCurrentMode()
                             }
                             ExpressiveButton {
-                                text: "Réinitialiser (Off)"
+                                text: "Reset (Off)"
                                 variant: "outlined"
                                 onClicked: dualsense.setTriggerOff(root.targetTrigger)
                             }
@@ -425,7 +425,7 @@ Item {
                         RowLayout {
                             Layout.fillWidth: true
                             Text {
-                                text: "📈 COURBE FORCE / DÉPLACEMENT EN DIRECT"
+                                text: "📈 LIVE FORCE / DISPLACEMENT PROFILE"
                                 color: ExpressiveTokens.textSurfaceMuted
                                 font.family: ExpressiveTokens.fontFamily
                                 font.pixelSize: 12
@@ -433,7 +433,7 @@ Item {
                             }
                             Item { Layout.fillWidth: true }
                             Text {
-                                text: "Course : 0% → 100%"
+                                text: "Travel: 0% → 100%"
                                 color: ExpressiveTokens.secondary
                                 font.family: ExpressiveTokens.fontMono
                                 font.pixelSize: 11
@@ -478,7 +478,7 @@ Item {
                         }
 
                         Text {
-                            text: "Le point blanc animé simule la progression de la pression du joueur sur la gâchette."
+                            text: "The animated probe traces user trigger pull displacement."
                             color: ExpressiveTokens.textSurfaceMuted
                             font.pixelSize: 11
                             Layout.alignment: Qt.AlignHCenter

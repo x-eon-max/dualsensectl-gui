@@ -7,199 +7,199 @@
 [![Backend](https://img.shields.io/badge/Backend-dualsensectl%20v0.7.0-purple.svg)](https://github.com/nowrep/dualsensectl)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> Un gestionnaire de bureau ultra-moderne, fluide et natif sous Linux pour les manettes **Sony PlayStation 5 DualSense** et **DualSense Edge**, conçu selon les principes du design system **Material 3 Expressive** et réécrit en **C++20 & Qt6 / QML**.  
-> Offre un contrôle granulaire en temps réel des gâchettes adaptatives, du bandeau lumineux RGB, de la batterie, du routage audio et du microphone matériel via [`dualsensectl`](https://github.com/nowrep/dualsensectl).
+> A modern, fluid, and native Linux desktop manager for **Sony PlayStation 5 DualSense** and **DualSense Edge** controllers, built from the ground up with the **Material 3 Expressive** design system in **C++20 & Qt6 / QML**.  
+> Provides granular real-time control over adaptive triggers, RGB lightbar calibration, battery telemetry, audio routing, and hardware microphone controls powered by [`dualsensectl`](https://github.com/nowrep/dualsensectl).
 
 ---
 
-## 🎨 Design System : Material 3 Expressive
+## 🎨 Design System: Material 3 Expressive
 
-### 🌟 Expérience Visuelle & Micro-Interactions
-- **Palette Dark Gaming OLED :** Fond noir profond (`#0B0D13`), conteneurs de surfaces hiérarchisés (`surfaceContainerLowest` à `surfaceContainerHighest`), et contrastes optimisés pour les configurations de jeu.
-- **Effets de Lueur Ambiante (Dynamic Ambient Glows) :** Le halo d'ambiance projeté derrière la manette et les cartes réagit dynamiquement en temps réel à la couleur et à la luminosité émise par la Lightbar de la DualSense.
-- **Formes & Contours Expressifs :** Boutons et chips pilules (`radius: 9999`), cartes aux angles prononcés (`radius: 28px`), jauges de batterie galbées et curseurs avec bulles flottantes de valeur numérique.
-- **Micro-Interactions Élastiques :** Transitions avec courbes d'amortissement (`Easing.OutBack` / `Easing.OutCubic`) sur le survol, la pression des boutons et l'ajustement des gâchettes.
+### 🌟 Visual Experience & Micro-Interactions
+- **Deep OLED Gaming Palette:** Rich black backgrounds (`#0B0D13`), tiered surface containers (`surfaceContainerLowest` through `surfaceContainerHighest`), and high contrast ratios tailored for gaming rigs.
+- **Dynamic Ambient Glows:** The ambient aura radiating behind the controller and header cards dynamically reacts in real-time to the color and brightness emitted by the DualSense Touchpad lightbar.
+- **Expressive Shapes & Geometry:** Pill buttons and chips (`radius: 9999`), curved surface cards (`radius: 28px`), animated battery gauges, and pill sliders with floating numeric tooltip bubbles.
+- **Spring & Elastic Micro-Interactions:** Smooth physics-based transitions (`Easing.OutBack` / `Easing.OutCubic`) on hover, button presses, mode changes, and trigger adjustments.
 
-### 🕹 Visualiseur Interactif DualSense
-- **Modèle Vectoriel Réactif en Direct :**
-  - **Ailes Touchpad RGB :** S'illuminent instantanément avec la couleur et la luminosité définies.
-  - **LEDs Joueur (1 à 5) :** Indicateurs sous le pavé tactile synchronisés avec le numéro de joueur sélectionné.
-  - **LED Muet (Mute) :** S'allume en ambre PlayStation officiel lorsque le micro est coupé.
-  - **Gâchettes L2 / R2 :** Mise en surbrillance lors du test ou de l'ajustement des gâchettes adaptatives.
+### 🕹 Interactive DualSense Visualizer
+- **Real-Time Vector Controller Model:**
+  - **RGB Lightbar Wings:** Dynamically illuminate with the exact RGB hue and brightness configured in the lighting studio.
+  - **Player Number LEDs (1 to 5):** Centered white indicators beneath the touchpad synced with player assignment.
+  - **Microphone Mute LED:** Illuminates in PlayStation official amber when the hardware microphone is muted.
+  - **L2 / R2 Triggers:** Highlighted during trigger testing, actuation, and profile tuning.
 
-### 📈 Graphique d'Onde des Gâchettes Adaptatives
-- **Visualiseur Dynamique Force / Déplacement :** Trace en temps réel la courbe de résistance mécanique en fonction du mode sélectionné (cran de tir d'arme à feu, tension élastique d'arc, pulsation de mitrailleuse, battement de galop, mur de résistance ferme) avec curseur animé de pression de doigt.
-
----
-
-## ⚡ Fonctionnalités Clés
-
-1. **Tableau de Bord Central (Dashboard) :**
-   - Vue d'ensemble du contrôleur avec jauge de batterie animée en temps réel et statut de charge.
-   - Badge d'état de connexion (`Bluetooth` ou `USB` avec chemin `/dev/hidraw*`).
-   - Raccourcis instantanés : 1-clic Mute micro, réglage rapide du volume, extinction Bluetooth.
-   - Informations de firmware matériel (`Firmware version`, `Build number`).
-
-2. **Studio des Gâchettes Adaptatives (Adaptive Triggers) :**
-   - Ciblage au choix : Gâchette gauche (L2), Gâchette droite (R2) ou Les Deux (L2 + R2).
-   - Préréglages gaming immédiats : *Pistolet Semi-Auto, Fusil à pompe lourd, Sniper, Arc composé, Mitrailleuse, Galop, Vibration moteur*.
-   - **Support complet des 7 modes `dualsensectl` :**
-     - `off` : Gâchette libre standard.
-     - `feedback` : Mur de résistance à position et force définies.
-     - `weapon` : Emulation de détente d'arme à feu (course, résistance et décrochage net).
-     - `bow` : Tension progressive de corde d'arc avec force de relâchement (snap).
-     - `machine` : Rafale alternée entre deux forces à fréquence et période réglables.
-     - `galloping` : Rythme de galop à deux battements.
-     - `vibration` : Oscillation haptique de gâchette autour d'une position centrale.
-
-3. **Studio d'Éclairage RGB & LEDs Joueur :**
-   - **Roue Chromatique HSV Haute Performance :** Rendu Canvas avec sélecteur circulaire teinte / saturation.
-   - **Saisie Directe HEX :** Aperçu numérique direct du code couleur (`#388BFF`, etc.).
-   - **Palettes Officielles Sony DualSense :** *Bleu PS5, Cyan Néon, Rouge Cosmique, Rose Nova, Violet Galactique, Blanc Astro, Vert Émeraude, Ambre Furtif*.
-   - **Curseur de Luminosité globale (0-255).**
-   - **Sélecteur de LEDs Joueur (0 à 5 LEDs) et Atténuation (Lumineux, Moyen, Atténué).**
-
-4. **Contrôle Audio, Microphone & Haptique :**
-   - Carte expressive dédiée pour couper / réactiver le microphone matériel d'un clic.
-   - Comportement de la LED orange du micro (`on`, `off`, `pulse`).
-   - Mode d'usage du micro (`chat`, `asr`, `both`).
-   - Routage audio (`headphone`, `internal`, `both`) et curseur de volume maître (0-255).
-   - **Atténuation du retour haptique (0-7) :** Permet d'atténuer indépendamment les moteurs de rumble voice-coil et les vibrations des gâchettes.
-
-5. **Gestionnaire de Profils de Jeu (1-Clic) :**
-   - Profils préconfigurés :
-     - 🎯 **Competitive FPS** (Détente sèche, recul atténué pour la visée, micro coupé, rouge sang).
-     - 🏎 **Sim Racing Pro** (Frein dur sur L2, tension d'accélérateur élastique sur R2, bleu néon).
-     - 🏹 **RPG Hunter & Bow** (Corde d'arc lourde avec snap sec, vert émeraude).
-     - 💥 **Heavy Gunner** (Mitrailleuse continue, haptique plein régime, ambre).
-     - 🎬 **Cinematic Immersion** (Gâchettes douces, bandeau violet cosmique, casque).
-     - 🔋 **Stealth Battery Saver** (LEDs coupées, haptique minimale pour longue autonomie).
-   - Enregistrement en 1 clic de la configuration actuelle sous un nouveau profil.
-
-6. **Simulateur Matériel Intégré (Mode Démo) :**
-   - Permet d'explorer et de tester immédiatement toutes les fonctionnalités de l'interface même sans manette branchée ou sans daemon en cours. Bascule automatiquement en mode matériel dès qu'une DualSense physique est connectée !
-
-7. **Intégration Plateau Système (System Tray / FreeDesktop) :**
-   - Icône dans la barre des tâches avec niveau de batterie en infobulle.
-   - Menu contextuel rapide : Mute micro, couleurs RGB rapides, profils, extinction Bluetooth, afficher/masquer.
+### 📈 Live Adaptive Trigger Waveform Graph
+- **Dynamic Force / Displacement Profile:** Plots the exact mechanical resistance curve in real time according to the active mode (firearm hammer break, elastic bow tension, machine recoil pulses, galloping rhythm, solid resistance wall) with an animated finger pressure probe.
 
 ---
 
-## 🏗 Architecture Logicielle
+## ⚡ Key Capabilities
+
+1. **Central Dashboard:**
+   - Real-time battery telemetry, animated charge indicator, and power status (`discharging`, `charging`, `full`).
+   - Connection status badge (`Bluetooth` or `USB` with `/dev/hidraw*` interface path).
+   - Instant quick actions: 1-click hardware mic mute, volume slider, lightbar toggle, and Bluetooth power-off.
+   - Hardware & firmware diagnostics (`Firmware version`, `Build number`).
+
+2. **Adaptive Triggers Studio:**
+   - Flexible target selection: Left trigger (L2), Right trigger (R2), or Both (L2 + R2).
+   - Gaming presets: *Semi-Auto Handgun, Heavy Shotgun, Sniper Resistance, Compound Bow, Heavy Machine Gun, Horse Gallop, Engine Vibration*.
+   - **Exhaustive support for all 7 `dualsensectl` trigger modes:**
+     - `off`: Free trigger travel with standard spring tension.
+     - `feedback`: Solid resistance wall starting at a custom position with adjustable strength.
+     - `weapon`: Firearm trigger simulation (take-up start, sudden wall resistance, and crisp break).
+     - `bow`: Progressive tension ramp simulating a drawn bowstring with snap release force.
+     - `machine`: Rapid burst recoil alternating between two strength levels at set frequencies and periods.
+     - `galloping`: Rhythmic two-beat gallop cadence.
+     - `vibration`: Continuous haptic oscillation around a defined travel position.
+
+3. **RGB Lighting & Player LEDs Studio:**
+   - **High-Performance HSV Color Wheel:** Real-time 60 FPS Canvas rendering with circular hue ring and saturation disk.
+   - **Direct HEX Input:** Live color preview pill and hex string indicator (`#388BFF`, etc.).
+   - **Official Sony Color Palettes:** *PS5 Blue, Neon Cyan, Cosmic Red, Nova Pink, Galactic Purple, Astro White, Emerald Green, Stealth Amber*.
+   - **Master Lightbar Brightness Slider (0-255).**
+   - **Player Number LEDs (0 to 5) and Dimming Controls (Bright, Medium, Dim).**
+
+4. **Audio, Microphone & Haptics Control:**
+   - Dedicated expressive card to toggle hardware microphone mute with glowing amber indicator.
+   - Microphone LED state selector (`off`, `on`, `pulse`).
+   - Microphone usage modes (`chat`, `asr`, `both`).
+   - Speaker output routing (`headphone`, `internal`, `both`) and master volume slider (0-255).
+   - **Haptic & Vibration Attenuation (0-7):** Independently attenuate voice-coil rumble motors and trigger vibrations.
+
+5. **1-Click Gaming Profiles Manager:**
+   - Pre-configured profiles ready to play:
+     - 🎯 **Competitive FPS** (Hair-trigger break stop, attenuated rumble for aiming precision, mic muted).
+     - 🏎 **Sim Racing Pro** (Firm brake pedal resistance on L2, progressive throttle tension on R2).
+     - 🏹 **RPG Hunter & Bow** (Heavy bowstring draw with crisp snap release, emerald green aura).
+     - 💥 **Heavy Gunner** (Continuous machine recoil, maximum haptics, cyber amber).
+     - 🎬 **Cinematic Immersion** (Smooth triggers, cosmic violet ambient glow, headphone routing).
+     - 🔋 **Stealth Battery Saver** (LEDs turned off, mic muted, triggers disengaged for maximum battery longevity).
+   - Save custom user profiles with 1 click directly to `~/.config/dualsense-expressive/profiles.json`.
+
+6. **Built-in Hardware Simulator (Demo Mode):**
+   - Explore, test, and tune the interface immediately even when no physical controller is plugged in. Seamlessly switches to hardware mode as soon as a real DualSense is detected!
+
+7. **System Tray Integration (FreeDesktop / SNI):**
+   - System tray icon displaying live battery status in its tooltip.
+   - Context menu: 1-click Mic Mute toggle, quick RGB color presets, game profile switcher, Bluetooth power-off, and Show/Hide.
+
+---
+
+## 🏗 Architecture Overview
 
 ```
 dualsensectl-gui / DualSense Expressive
-├── CMakeLists.txt                 # Configuration de compilation CMake (C++20, Qt6)
+├── CMakeLists.txt                 # CMake build configuration (C++20, Qt6)
 ├── src/
-│   ├── main.cpp                   # Point d'entrée Qt Quick, Enregistrement des types C++
-│   ├── SystrayManager.cpp/.h      # Intégration System Tray Linux (SNI / FreeDesktop)
+│   ├── main.cpp                   # Qt Quick entry point, High-DPI, C++ type registration
+│   ├── SystrayManager.cpp/.h      # Linux system tray integration (FreeDesktop / SNI)
 │   └── core/
-│       ├── DualSenseDevice.cpp/.h # Modèle de données QObject exposé à QML
-│       ├── DualSenseClient.cpp/.h # Backend IPC dualsensectl & Mode Simulation
-│       └── ProfileManager.cpp/.h  # Gestionnaire de profils JSON
+│       ├── DualSenseDevice.cpp/.h # QObject device data model exposed to QML
+│       ├── DualSenseClient.cpp/.h # Non-blocking dualsensectl IPC engine & Demo Simulator
+│       └── ProfileManager.cpp/.h  # JSON game profile manager
 ├── ui/
-│   ├── App.qml                    # Fenêtre principale, barre de navigation, aura lumineuse
+│   ├── App.qml                    # Root window, ambient lightbar aura, navigation bar
 │   ├── theme/
-│   │   └── ExpressiveTokens.qml   # Tokens de design Material 3 Expressive
+│   │   └── ExpressiveTokens.qml   # Material 3 Expressive design tokens (colors, radiuses, motion)
 │   ├── components/
-│   │   ├── ExpressiveButton.qml   # Boutons pilules avec rebond élastique
-│   │   ├── ExpressiveCard.qml     # Cartes avec halo de lueur ambiante
-│   │   ├── ExpressiveSlider.qml   # Sliders galbés avec bulle numérique
-│   │   ├── ExpressiveSwitch.qml   # Interrupteurs M3 à pastille mobile
-│   │   ├── ExpressiveChip.qml     # Chips filtrants et sélecteurs
-│   │   ├── StatusBadge.qml        # Badges d'état avec pulsation
-│   │   ├── ColorWheel.qml         # Roue chromatique HSV Canvas temps réel
-│   │   ├── InteractiveDualSense.qml # Manette vectorielle réactive (Lightbar, LEDs, Mute)
-│   │   ├── TriggerVisualizer.qml  # Graphique de force des gâchettes
-│   │   ├── ExpressiveFAB.qml      # Bouton flottant extensible
-│   │   └── NotificationToast.qml  # Toast snackbar de notification
+│   │   ├── ExpressiveButton.qml   # Pill buttons with elastic bounce animations
+│   │   ├── ExpressiveCard.qml     # Surface container cards with dynamic ambient glows
+│   │   ├── ExpressiveSlider.qml   # Pill sliders with floating value tooltip bubbles
+│   │   ├── ExpressiveSwitch.qml   # M3 toggle switches with morphing thumb
+│   │   ├── ExpressiveChip.qml     # Filter chips and mode selectors
+│   │   ├── StatusBadge.qml        # Telemetry badges with pulsing indicators
+│   │   ├── ColorWheel.qml         # Real-time HSV Canvas color wheel
+│   │   ├── InteractiveDualSense.qml # Vector DualSense visualizer (RGB wings, LEDs, Mute)
+│   │   ├── TriggerVisualizer.qml  # Live force/displacement waveform curve
+│   │   ├── ExpressiveFAB.qml      # Expandable floating action button
+│   │   └── NotificationToast.qml  # Snackbar toast notifications
 │   └── views/
-│       ├── DashboardView.qml      # Tableau de bord principal
-│       ├── TriggersView.qml       # Studio des gâchettes adaptatives
-│       ├── LightingView.qml       # Studio d'éclairage RGB & LEDs
-│       ├── AudioView.qml          # Gestion audio, micro et atténuation
-│       └── ProfilesView.qml       # Gestionnaire de profils
+│       ├── DashboardView.qml      # Main dashboard & telemetry
+│       ├── TriggersView.qml       # Adaptive triggers studio
+│       ├── LightingView.qml       # RGB lighting & player LEDs studio
+│       ├── AudioView.qml          # Audio routing, mic mute & haptic attenuation
+│       └── ProfilesView.qml       # Gaming profiles manager
 ├── resources/
-│   ├── qml.qrc                    # Bundle des ressources QML et SVG
+│   ├── qml.qrc                    # Embedded QML and SVG resource bundle
 │   └── icons/
-│       ├── app-icon.svg           # Icône d'application Material 3 Expressive
-│       └── dualsense.svg          # Icône vectorielle manette
+│       ├── app-icon.svg           # High-resolution Material 3 Expressive squircle app icon
+│       └── dualsense.svg          # DualSense vector silhouette
 └── scripts/
-    ├── build.sh                   # Script de compilation automatisé
-    ├── run.sh                     # Lanceur de l'application
-    ├── install_desktop.sh         # Installeur d'entrée de bureau (.desktop)
-    └── setup_udev_rules.sh        # Règles udev pour l'accès hidraw sans root
+    ├── build.sh                   # Automated CMake build script
+    ├── run.sh                     # Application launcher
+    ├── install_desktop.sh         # Desktop entry and icon installer
+    └── setup_udev_rules.sh        # Udev rule script for rootless /dev/hidraw access
 ```
 
 ---
 
-## 🚀 Installation & Lancement
+## 🚀 Installation & Running
 
-### 1. Prérequis
-Sur Arch Linux / Manjaro / Fedora / Ubuntu :
+### 1. Prerequisites
+On Arch Linux / Fedora / Ubuntu / Debian:
 - `cmake` (>= 3.20)
-- `g++` ou `clang++` (support C++20)
+- `g++` or `clang++` (C++20 support)
 - `qt6-base`, `qt6-declarative`, `qt6-svg`
-- `dualsensectl` (version 0.7.0 recommandée)
+- `dualsensectl` (v0.7.0 recommended)
 
-Sur Arch Linux :
+On Arch Linux:
 ```bash
 sudo pacman -S cmake qt6-base qt6-declarative qt6-svg gcc
 ```
 
-### 2. Configuration des permissions Udev (Une seule fois)
-Pour permettre à l'application de dialoguer avec les périphériques `/dev/hidraw*` sans privilèges `root` :
+### 2. Configure Udev Permissions (One-Time Setup)
+To grant non-root permissions to write output feature reports to `/dev/hidraw*`:
 ```bash
 sudo ./scripts/setup_udev_rules.sh
 ```
 
-### 3. Compilation & Lancement
-Compilez et lancez l'application en une seule commande :
+### 3. Build & Launch
+Build and run the application with a single command:
 ```bash
 ./scripts/run.sh
 ```
-Ou manuellement avec CMake :
+Or build manually using CMake:
 ```bash
 ./scripts/build.sh
 ./build/dualsense-expressive
 ```
 
-### 4. Installation dans le menu des applications
-Pour intégrer DualSense Expressive directement dans votre lanceur d'applications Linux (KDE Plasma, GNOME, etc.) :
+### 4. Install Application Launcher (Desktop Menu Entry)
+To integrate DualSense Expressive into your Linux desktop application launcher (KDE Plasma, GNOME, etc.):
 ```bash
 ./scripts/install_desktop.sh
 ```
 
 ---
 
-## 📋 Matrice des Commandes CLI dualsensectl
+## 📋 CLI Command Matrix (`dualsensectl`)
 
-| Commande CLI | Fonction Matérielle | Intégration GUI DualSense Expressive |
+| CLI Command | Hardware Capability | DualSense Expressive GUI Integration |
 | :--- | :--- | :--- |
-| `dualsensectl -l` | Liste les manettes connectées | Détection auto & sélecteur de périphérique |
-| `dualsensectl battery` | Niveau & état de charge | Jauge animée & badge d'état sur le Dashboard |
-| `dualsensectl info` | Version du firmware & build | Carte Diagnostics & Firmware KERNEL |
-| `dualsensectl lightbar on / off` | Active/désactive le halo | Switch bascule sur Dashboard & Lighting |
-| `dualsensectl lightbar R G B [BRIGHTNESS]` | Couleur RGB & luminosité (0-255) | Roue HSV, sélecteur Hex, curseur luminosité |
-| `dualsensectl led-brightness LEVEL` | Dimming LEDs (0-2) | Chips d'atténuation (Lumineux, Moyen, Atténué) |
-| `dualsensectl player-leds NUMBER` | LEDs joueur (0-5) | Sélecteur de LEDs Joueur 0 à 5 |
-| `dualsensectl microphone on / off` | Muet micro matériel | Bouton expressif Mute & Floating Action Button |
-| `dualsensectl microphone-led on/off/pulse`| Comportement LED orange | Chips On, Off, Pulse dans l'onglet Audio |
-| `dualsensectl microphone-mode STATE` | Usage chat / asr / both | Chips de mode micro dans l'onglet Audio |
-| `dualsensectl speaker STATE` | Routage casque / interne / both | Chips de routage audio dans l'onglet Audio |
-| `dualsensectl volume VOLUME` | Volume maître (0-255) | Curseur de volume avec bulle numérique |
-| `dualsensectl attenuation RUMBLE TRIGGER` | Atténuation haptique (0-7) | Sliders d'atténuation moteurs & gâchettes |
-| `dualsensectl trigger <tgt> off` | Réinitialise les gâchettes | Bouton Réinitialiser & mode Off |
-| `dualsensectl trigger <tgt> feedback` | Résistance de position | Sliders Position & Force + Graphique courbe |
-| `dualsensectl trigger <tgt> weapon` | Cran de tir d'arme à feu | Sliders Start, Stop, Force + Graphique courbe |
-| `dualsensectl trigger <tgt> bow` | Tension d'arc élastique | Sliders Start, Stop, Tension, Snapforce |
-| `dualsensectl trigger <tgt> galloping` | Battement de galop | Sliders Start, Stop, Pied 1, Pied 2, Cadence |
-| `dualsensectl trigger <tgt> machine` | Mitrailleuse saccadée | Sliders Start, Stop, Forces A/B, Fréquence, Période |
-| `dualsensectl trigger <tgt> vibration` | Vibration continue arm | Sliders Position centrale, Amplitude, Fréquence |
-| `dualsensectl power-off` | Extinction manette (BT) | Bouton extinction & menu plateau système |
+| `dualsensectl -l` | List connected controllers | Automatic discovery & device dropdown selector |
+| `dualsensectl battery` | Query battery level & state | Animated gauge & telemetry badge on Dashboard |
+| `dualsensectl info` | Query firmware info & build number | KERNEL FIRMWARE diagnostics card |
+| `dualsensectl lightbar on / off` | Toggle touchpad lightbar | Expressive switch on Dashboard & Lighting Studio |
+| `dualsensectl lightbar R G B [BR]` | Set RGB color & brightness (0-255) | 60 FPS HSV Color Wheel, Hex entry, brightness slider |
+| `dualsensectl led-brightness LEVEL` | Set player & mic LED dimming (0-2) | Dimming chips (Bright, Medium, Dim) |
+| `dualsensectl player-leds NUMBER` | Set player indicator LEDs (0-5) | Numbered player LED chips 0 to 5 |
+| `dualsensectl microphone on / off` | Hardware mic mute toggle | Large mute toggle card & Floating Action Button |
+| `dualsensectl microphone-led on/off/pulse`| Configure amber mic LED | On, Off, Pulse chips in Audio Studio |
+| `dualsensectl microphone-mode STATE` | Toggle mic usage (chat/asr/both) | Mode chips in Audio Studio |
+| `dualsensectl speaker STATE` | Route audio (headphone/internal/both)| Audio routing chips in Audio Studio |
+| `dualsensectl volume VOLUME` | Master audio volume (0-255) | Pill slider with floating numeric tooltip |
+| `dualsensectl attenuation RUMBLE TRIGGER` | Attenuate haptics & trigger vibrations (0-7)| Independent attenuation sliders (0 to 7) |
+| `dualsensectl trigger <tgt> off` | Reset triggers to standard spring | Reset (Off) action button & mode chip |
+| `dualsensectl trigger <tgt> feedback` | Position-based resistance wall | Position & Strength sliders + live curve visualizer |
+| `dualsensectl trigger <tgt> weapon` | Firearm break emulation | Start, Stop, Strength sliders + live curve visualizer |
+| `dualsensectl trigger <tgt> bow` | Bowstring draw & snap release | Start, Stop, Tension, Snap sliders + live curve visualizer |
+| `dualsensectl trigger <tgt> galloping` | Two-beat gallop rhythm | Start, Stop, Foot 1, Foot 2, Cadence sliders |
+| `dualsensectl trigger <tgt> machine` | Rapid burst recoil | Start, Stop, Strength A/B, Frequency, Period sliders |
+| `dualsensectl trigger <tgt> vibration` | Motor arm vibration | Center Position, Amplitude, Frequency sliders |
+| `dualsensectl power-off` | Power off controller (Bluetooth) | Power-off button on Dashboard & system tray menu |
 
 ---
 
-## 📄 Licence
+## 📄 License
 
-Distribué sous la licence **MIT**. Voir [LICENSE](LICENSE) pour plus de détails.
+Distributed under the **MIT** License. See [LICENSE](LICENSE) for details.

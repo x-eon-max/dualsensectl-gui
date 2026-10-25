@@ -39,14 +39,14 @@ Item {
                     ColumnLayout {
                         spacing: 4
                         Text {
-                            text: "🎙 AUDIO, MICROPHONE & HAPTIQUE"
+                            text: "🎙 AUDIO, MICROPHONE & HAPTICS"
                             color: ExpressiveTokens.textSurface
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 18
                             font.weight: Font.Black
                         }
                         Text {
-                            text: "Gestion du micro matériel, routage haut-parleur/casque et atténuation du retour haptique"
+                            text: "Hardware mic control, speaker/headphone routing, and voice-coil haptic attenuation"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 13
@@ -56,7 +56,7 @@ Item {
                     Item { Layout.fillWidth: true }
 
                     StatusBadge {
-                        text: root.micMuted ? "MICROPHONE COUPÉ" : "MICROPHONE ACTIF"
+                        text: root.micMuted ? "MICROPHONE MUTED" : "MICROPHONE ACTIVE"
                         dotColor: root.micMuted ? ExpressiveTokens.amberWarning : ExpressiveTokens.successColor
                     }
                 }
@@ -88,14 +88,14 @@ Item {
                     ColumnLayout {
                         spacing: 4
                         Text {
-                            text: root.micMuted ? "Microphone Matériel Désactivé" : "Microphone Matériel Actif"
+                            text: root.micMuted ? "Hardware Microphone Disabled" : "Hardware Microphone Active"
                             color: ExpressiveTokens.textSurface
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 16
                             font.weight: Font.Bold
                         }
                         Text {
-                            text: root.micMuted ? "La LED orange de la manette est allumée. Aucun flux audio n'est capté." : "Le microphone est ouvert pour le chat vocal et la reconnaissance vocale."
+                            text: root.micMuted ? "Controller amber LED is on. Audio capture is physically disabled." : "Microphone is unmuted and capturing audio for voice chat and system."
                             color: ExpressiveTokens.textSurfaceMuted
                             font.pixelSize: 13
                         }
@@ -104,7 +104,7 @@ Item {
                     Item { Layout.fillWidth: true }
 
                     ExpressiveButton {
-                        text: root.micMuted ? "Activer le Micro" : "Couper le Micro (Mute)"
+                        text: root.micMuted ? "Unmute Mic" : "Mute Mic"
                         variant: root.micMuted ? "primary" : "danger"
                         accentColor: root.micMuted ? ExpressiveTokens.successColor : ExpressiveTokens.amberWarning
                         onClicked: dualsense.setMicMuted(!root.micMuted)
@@ -126,22 +126,22 @@ Item {
                         anchors.fill: parent
                         spacing: 12
 
-                        Text { text: "COMPORTEMENT DE LA LED DU MICRO"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
+                        Text { text: "MICROPHONE LED BEHAVIOR"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
 
                         RowLayout {
                             spacing: 8
-                            ExpressiveChip { text: "Éteinte (Off)"; selected: root.micLedState === "off"; onClicked: { root.micLedState = "off"; dualsense.setMicLed("off") } }
-                            ExpressiveChip { text: "Fixe (On)"; selected: root.micLedState === "on"; onClicked: { root.micLedState = "on"; dualsense.setMicLed("on") } }
-                            ExpressiveChip { text: "Pulsation (Pulse)"; selected: root.micLedState === "pulse"; onClicked: { root.micLedState = "pulse"; dualsense.setMicLed("pulse") } }
+                            ExpressiveChip { text: "Off"; selected: root.micLedState === "off"; onClicked: { root.micLedState = "off"; dualsense.setMicLed("off") } }
+                            ExpressiveChip { text: "On"; selected: root.micLedState === "on"; onClicked: { root.micLedState = "on"; dualsense.setMicLed("on") } }
+                            ExpressiveChip { text: "Pulse"; selected: root.micLedState === "pulse"; onClicked: { root.micLedState = "pulse"; dualsense.setMicLed("pulse") } }
                         }
 
-                        Text { text: "USAGE DU MICROPHONE"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
+                        Text { text: "MICROPHONE USAGE MODE"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
 
                         RowLayout {
                             spacing: 8
-                            ExpressiveChip { text: "Chat Vocal (Chat)"; selected: root.micMode === "chat"; onClicked: { root.micMode = "chat"; dualsense.setMicMode("chat") } }
-                            ExpressiveChip { text: "Reconnaissance (ASR)"; selected: root.micMode === "asr"; onClicked: { root.micMode = "asr"; dualsense.setMicMode("asr") } }
-                            ExpressiveChip { text: "Les Deux (Both)"; selected: root.micMode === "both"; onClicked: { root.micMode = "both"; dualsense.setMicMode("both") } }
+                            ExpressiveChip { text: "Voice Chat (Chat)"; selected: root.micMode === "chat"; onClicked: { root.micMode = "chat"; dualsense.setMicMode("chat") } }
+                            ExpressiveChip { text: "Recognition (ASR)"; selected: root.micMode === "asr"; onClicked: { root.micMode = "asr"; dualsense.setMicMode("asr") } }
+                            ExpressiveChip { text: "Both"; selected: root.micMode === "both"; onClicked: { root.micMode = "both"; dualsense.setMicMode("both") } }
                         }
                     }
                 }
@@ -155,16 +155,16 @@ Item {
                         anchors.fill: parent
                         spacing: 12
 
-                        Text { text: "ROUTAGE DU HAUT-PARLEUR"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
+                        Text { text: "SPEAKER ROUTING"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
 
                         RowLayout {
                             spacing: 8
-                            ExpressiveChip { text: "Casque Audio (Headphone)"; selected: root.speakerMode === "headphone"; onClicked: { root.speakerMode = "headphone"; dualsense.setSpeakerMode("headphone") } }
-                            ExpressiveChip { text: "Haut-Parleur Interne"; selected: root.speakerMode === "internal"; onClicked: { root.speakerMode = "internal"; dualsense.setSpeakerMode("internal") } }
-                            ExpressiveChip { text: "Les Deux (Both)"; selected: root.speakerMode === "both"; onClicked: { root.speakerMode = "both"; dualsense.setSpeakerMode("both") } }
+                            ExpressiveChip { text: "Headphones"; selected: root.speakerMode === "headphone"; onClicked: { root.speakerMode = "headphone"; dualsense.setSpeakerMode("headphone") } }
+                            ExpressiveChip { text: "Internal Speaker"; selected: root.speakerMode === "internal"; onClicked: { root.speakerMode = "internal"; dualsense.setSpeakerMode("internal") } }
+                            ExpressiveChip { text: "Both"; selected: root.speakerMode === "both"; onClicked: { root.speakerMode = "both"; dualsense.setSpeakerMode("both") } }
                         }
 
-                        Text { text: "VOLUME PRINCIPAL"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
+                        Text { text: "MASTER VOLUME"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 12; font.weight: Font.Bold }
 
                         ExpressiveSlider {
                             Layout.fillWidth: true
@@ -191,7 +191,7 @@ Item {
                     spacing: 16
 
                     Text {
-                        text: "📳 ATTÉNUATION DU RETOUR HAPTIQUE (RUMBLE & GÂCHETTES)"
+                        text: "📳 HAPTIC & VIBRATION ATTENUATION"
                         color: ExpressiveTokens.textSurfaceMuted
                         font.family: ExpressiveTokens.fontFamily
                         font.pixelSize: 12
@@ -206,9 +206,9 @@ Item {
                             Layout.fillWidth: true
                             spacing: 6
                             RowLayout {
-                                Text { text: "Atténuation Moteurs Haptiques (0 = 100%, 7 = 12.5%)"; color: ExpressiveTokens.textSurface; font.pixelSize: 12 }
+                                Text { text: "Voice-Coil Rumble Attenuation (0 = 100%, 7 = 12.5%)"; color: ExpressiveTokens.textSurface; font.pixelSize: 12 }
                                 Item { Layout.fillWidth: true }
-                                Text { text: "Niveau " + root.rumbleAtt; color: ExpressiveTokens.primary; font.weight: Font.Bold; font.pixelSize: 12 }
+                                Text { text: "Level " + root.rumbleAtt; color: ExpressiveTokens.primary; font.weight: Font.Bold; font.pixelSize: 12 }
                             }
                             ExpressiveSlider {
                                 Layout.fillWidth: true
@@ -225,9 +225,9 @@ Item {
                             Layout.fillWidth: true
                             spacing: 6
                             RowLayout {
-                                Text { text: "Atténuation Vibrations Gâchettes (0 = Max, 7 = Min)"; color: ExpressiveTokens.textSurface; font.pixelSize: 12 }
+                                Text { text: "Trigger Vibration Attenuation (0 = Max, 7 = Min)"; color: ExpressiveTokens.textSurface; font.pixelSize: 12 }
                                 Item { Layout.fillWidth: true }
-                                Text { text: "Niveau " + root.triggerAtt; color: ExpressiveTokens.primary; font.weight: Font.Bold; font.pixelSize: 12 }
+                                Text { text: "Level " + root.triggerAtt; color: ExpressiveTokens.primary; font.weight: Font.Bold; font.pixelSize: 12 }
                             }
                             ExpressiveSlider {
                                 Layout.fillWidth: true

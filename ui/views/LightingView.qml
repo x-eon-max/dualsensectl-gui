@@ -43,14 +43,14 @@ Item {
                     ColumnLayout {
                         spacing: 4
                         Text {
-                            text: "🌈 ÉCLAIRAGE RGB & LEDS JOUEUR"
+                            text: "🌈 RGB LIGHTING & PLAYER LEDS"
                             color: ExpressiveTokens.textSurface
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 18
                             font.weight: Font.Black
                         }
                         Text {
-                            text: "Calibration colorimétrique du halo Touchpad et indicateurs LED numérotés"
+                            text: "Color calibration for Touchpad lightbar and numbered player indicators"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 13
@@ -61,7 +61,7 @@ Item {
 
                     RowLayout {
                         spacing: 12
-                        Text { text: "Lightbar Active :"; color: ExpressiveTokens.textSurface; font.weight: Font.Bold; font.pixelSize: 13 }
+                        Text { text: "Lightbar Enabled:"; color: ExpressiveTokens.textSurface; font.weight: Font.Bold; font.pixelSize: 13 }
                         ExpressiveSwitch {
                             checked: device ? device.lightbarEnabled : true
                             onToggled: function(st) { dualsense.setLightbarEnabled(st) }
@@ -87,7 +87,7 @@ Item {
                         spacing: 16
 
                         Text {
-                            text: "ROUE CHROMATIQUE HSV (TEMPS RÉEL)"
+                            text: "REAL-TIME HSV COLOR WHEEL"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 12
@@ -139,7 +139,7 @@ Item {
                         spacing: 18
 
                         Text {
-                            text: "PALETTES OFFICIELLES & LUMINOSITÉ"
+                            text: "OFFICIAL PALETTES & BRIGHTNESS"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 12
@@ -153,14 +153,14 @@ Item {
                             rowSpacing: 8
                             columnSpacing: 8
 
-                            ExpressiveChip { text: "Bleu PS5"; activeColor: "#0070D1"; onClicked: { root.selectedColor = "#0070D1"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Cyan Néon"; activeColor: "#00E5FF"; onClicked: { root.selectedColor = "#00E5FF"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Rouge Cosmique"; activeColor: "#E91E63"; onClicked: { root.selectedColor = "#E91E63"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Rose Nova"; activeColor: "#FF4081"; onClicked: { root.selectedColor = "#FF4081"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Violet Galactique"; activeColor: "#9C27B0"; onClicked: { root.selectedColor = "#9C27B0"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Blanc Astro"; activeColor: "#FFFFFF"; onClicked: { root.selectedColor = "#FFFFFF"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Vert Émeraude"; activeColor: "#00E676"; onClicked: { root.selectedColor = "#00E676"; root.applySelectedColor() } }
-                            ExpressiveChip { text: "Ambre Furtif"; activeColor: "#FF8C00"; onClicked: { root.selectedColor = "#FF8C00"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "PS5 Blue"; activeColor: "#0070D1"; onClicked: { root.selectedColor = "#0070D1"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Neon Cyan"; activeColor: "#00E5FF"; onClicked: { root.selectedColor = "#00E5FF"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Cosmic Red"; activeColor: "#E91E63"; onClicked: { root.selectedColor = "#E91E63"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Nova Pink"; activeColor: "#FF4081"; onClicked: { root.selectedColor = "#FF4081"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Galactic Purple"; activeColor: "#9C27B0"; onClicked: { root.selectedColor = "#9C27B0"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Astro White"; activeColor: "#FFFFFF"; onClicked: { root.selectedColor = "#FFFFFF"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Emerald Green"; activeColor: "#00E676"; onClicked: { root.selectedColor = "#00E676"; root.applySelectedColor() } }
+                            ExpressiveChip { text: "Stealth Amber"; activeColor: "#FF8C00"; onClicked: { root.selectedColor = "#FF8C00"; root.applySelectedColor() } }
                         }
 
                         // Brightness Slider
@@ -169,7 +169,7 @@ Item {
                             spacing: 6
                             RowLayout {
                                 Layout.fillWidth: true
-                                Text { text: "Luminosité globale du bandeau"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
+                                Text { text: "Master Lightbar Brightness"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
                                 Item { Layout.fillWidth: true }
                                 Text { text: Math.round((root.brightness / 255.0) * 100) + "%"; color: ExpressiveTokens.primary; font.family: ExpressiveTokens.fontMono; font.weight: Font.Bold; font.pixelSize: 13 }
                             }
@@ -188,10 +188,10 @@ Item {
                         ColumnLayout {
                             Layout.fillWidth: true
                             spacing: 8
-                            Text { text: "LEDs Numéro de Joueur (1 à 5) :"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
+                            Text { text: "Player Number LEDs (1 to 5):"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
                             RowLayout {
                                 spacing: 8
-                                ExpressiveChip { text: "0 (Éteintes)"; selected: root.playerLeds === 0; onClicked: { root.playerLeds = 0; dualsense.setPlayerLeds(0) } }
+                                ExpressiveChip { text: "0 (Off)"; selected: root.playerLeds === 0; onClicked: { root.playerLeds = 0; dualsense.setPlayerLeds(0) } }
                                 ExpressiveChip { text: "1 LED"; selected: root.playerLeds === 1; onClicked: { root.playerLeds = 1; dualsense.setPlayerLeds(1) } }
                                 ExpressiveChip { text: "2 LEDs"; selected: root.playerLeds === 2; onClicked: { root.playerLeds = 2; dualsense.setPlayerLeds(2) } }
                                 ExpressiveChip { text: "3 LEDs"; selected: root.playerLeds === 3; onClicked: { root.playerLeds = 3; dualsense.setPlayerLeds(3) } }
@@ -204,10 +204,10 @@ Item {
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 12
-                            Text { text: "Atténuation LEDs joueur :"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
-                            ExpressiveChip { text: "Lumineux (High)"; selected: root.ledDimming === 0; onClicked: { root.ledDimming = 0; dualsense.setLedBrightness(0) } }
-                            ExpressiveChip { text: "Moyen (Medium)"; selected: root.ledDimming === 1; onClicked: { root.ledDimming = 1; dualsense.setLedBrightness(1) } }
-                            ExpressiveChip { text: "Atténué (Dim)"; selected: root.ledDimming === 2; onClicked: { root.ledDimming = 2; dualsense.setLedBrightness(2) } }
+                            Text { text: "Player LEDs Dimming:"; color: ExpressiveTokens.textSurface; font.pixelSize: 13; font.weight: Font.Medium }
+                            ExpressiveChip { text: "Bright (High)"; selected: root.ledDimming === 0; onClicked: { root.ledDimming = 0; dualsense.setLedBrightness(0) } }
+                            ExpressiveChip { text: "Medium"; selected: root.ledDimming === 1; onClicked: { root.ledDimming = 1; dualsense.setLedBrightness(1) } }
+                            ExpressiveChip { text: "Dim (Low)"; selected: root.ledDimming === 2; onClicked: { root.ledDimming = 2; dualsense.setLedBrightness(2) } }
                         }
                     }
                 }

@@ -14,7 +14,7 @@ cd "$BUILD_DIR"
 cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j"$(nproc)"
 
-# Create root symlink for convenience
+# Create root symlinks for convenience
 ln -sf "$BUILD_DIR/dualsense-expressive" "$DIR/dualsense-expressive"
 ln -sf "$BUILD_DIR/dualsense-expressive" "$DIR/dualsensectl-gui"
 

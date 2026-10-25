@@ -17,7 +17,7 @@ if [ ! -f "$DIR/build/dualsense-expressive" ]; then
     "$DIR/scripts/build.sh"
 fi
 
-# Copy App Icon
+# Copy App Icons
 cp "$ICON_SRC" "$ICON_DIR/io.github.x_eon_max.dualsense_expressive.svg"
 cp "$ICON_SRC" "$ICON_DIR/dualsensectl-gui.svg"
 

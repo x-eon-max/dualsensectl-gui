@@ -94,7 +94,7 @@ ApplicationWindow {
 
             // Simulation Mode Chip
             ExpressiveChip {
-                text: dualsense.simulationMode ? "🧪 Mode Démo Actif" : "🎮 Mode Matériel"
+                text: dualsense.simulationMode ? "🧪 Demo Mode Active" : "🎮 Hardware Mode"
                 selected: dualsense.simulationMode
                 activeColor: ExpressiveTokens.tertiary
                 onClicked: dualsense.toggleSimulationMode()
@@ -102,7 +102,7 @@ ApplicationWindow {
 
             // Rescan Device Button
             ExpressiveButton {
-                text: "Actualiser"
+                text: "Refresh"
                 variant: "tonal"
                 onClicked: dualsense.rescan()
             }
@@ -127,27 +127,27 @@ ApplicationWindow {
                 spacing: 12
 
                 ExpressiveChip {
-                    text: "📊 Tableau de Bord"
+                    text: "📊 Dashboard"
                     selected: window.activeNav === 0
                     onClicked: window.activeNav = 0
                 }
                 ExpressiveChip {
-                    text: "🎯 Gâchettes Adaptatives"
+                    text: "🎯 Adaptive Triggers"
                     selected: window.activeNav === 1
                     onClicked: window.activeNav = 1
                 }
                 ExpressiveChip {
-                    text: "🌈 Éclairage RGB"
+                    text: "🌈 RGB Lighting"
                     selected: window.activeNav === 2
                     onClicked: window.activeNav = 2
                 }
                 ExpressiveChip {
-                    text: "🎙 Audio & Micro"
+                    text: "🎙 Audio & Mic"
                     selected: window.activeNav === 3
                     onClicked: window.activeNav = 3
                 }
                 ExpressiveChip {
-                    text: "⚡ Profils de Jeu"
+                    text: "⚡ Game Profiles"
                     selected: window.activeNav === 4
                     onClicked: window.activeNav = 4
                 }

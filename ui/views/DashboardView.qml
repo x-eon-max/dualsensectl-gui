@@ -43,7 +43,7 @@ Item {
                                 font.weight: Font.Bold
                             }
                             Text {
-                                text: device ? (device.id + " • " + (device.isCharging ? "En charge..." : device.batteryStatus)) : "Non connecté"
+                                text: device ? (device.id + " • " + (device.isCharging ? "Charging..." : device.batteryStatus)) : "Not connected"
                                 color: ExpressiveTokens.textSurfaceMuted
                                 font.family: ExpressiveTokens.fontFamily
                                 font.pixelSize: 12
@@ -64,7 +64,7 @@ Item {
                         }
 
                         StatusBadge {
-                            text: device ? device.connectionType : "Déconnecté"
+                            text: device ? device.connectionType : "Disconnected"
                             dotColor: (device && device.connectionType === "Bluetooth") ? ExpressiveTokens.primary : ExpressiveTokens.secondary
                         }
                     }
@@ -100,7 +100,7 @@ Item {
                         RowLayout {
                             Layout.fillWidth: true
                             Text {
-                                text: "⚡ ÉNERGIE & BATTERIE"
+                                text: "⚡ POWER & BATTERY"
                                 color: ExpressiveTokens.textSurfaceMuted
                                 font.family: ExpressiveTokens.fontFamily
                                 font.pixelSize: 12
@@ -145,13 +145,13 @@ Item {
 
                             ColumnLayout {
                                 spacing: 2
-                                Text { text: "État d'alimentation"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11 }
+                                Text { text: "Power State"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11 }
                                 Text { text: device ? device.batteryStatus.toUpperCase() : "DISCHARGING"; color: ExpressiveTokens.textSurface; font.weight: Font.Bold; font.pixelSize: 13 }
                             }
                             Item { Layout.fillWidth: true }
                             ColumnLayout {
                                 spacing: 2
-                                Text { text: "Interface système"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11 }
+                                Text { text: "System Interface"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11 }
                                 Text { text: device ? ("/dev/" + device.id) : "/dev/hidraw0"; color: ExpressiveTokens.primary; font.family: ExpressiveTokens.fontMono; font.weight: Font.Bold; font.pixelSize: 12 }
                             }
                         }
@@ -161,7 +161,7 @@ Item {
                         // BT Power off button
                         ExpressiveButton {
                             Layout.fillWidth: true
-                            text: "Éteindre la manette (Bluetooth)"
+                            text: "Turn Off Controller (Bluetooth)"
                             variant: "outlined"
                             accentColor: ExpressiveTokens.errorColor
                             enabled: device ? (device.connectionType === "Bluetooth" || dualsense.simulationMode) : false
@@ -181,7 +181,7 @@ Item {
                         spacing: 14
 
                         Text {
-                            text: "🎛 CONTRÔLES RAPIDES"
+                            text: "🎛 QUICK CONTROLS"
                             color: ExpressiveTokens.textSurfaceMuted
                             font.family: ExpressiveTokens.fontFamily
                             font.pixelSize: 12
@@ -192,7 +192,7 @@ Item {
                         ExpressiveButton {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 46
-                            text: (device && device.micMuted) ? "🔇 MICROPHONE COUPÉ (MUTE)" : "🎙 MICROPHONE ACTIF"
+                            text: (device && device.micMuted) ? "🔇 MICROPHONE MUTED" : "🎙 MICROPHONE ACTIVE"
                             variant: (device && device.micMuted) ? "danger" : "secondary"
                             accentColor: (device && device.micMuted) ? ExpressiveTokens.amberWarning : ExpressiveTokens.successColor
                             onClicked: {
@@ -217,7 +217,7 @@ Item {
                         // Lightbar quick toggle
                         RowLayout {
                             Layout.fillWidth: true
-                            Text { text: "Bandeau lumineux (Lightbar)"; color: ExpressiveTokens.textSurface; font.pixelSize: 12; font.weight: Font.Medium }
+                            Text { text: "RGB Lightbar"; color: ExpressiveTokens.textSurface; font.pixelSize: 12; font.weight: Font.Medium }
                             Item { Layout.fillWidth: true }
                             ExpressiveSwitch {
                                 checked: device ? device.lightbarEnabled : true
@@ -240,7 +240,7 @@ Item {
 
                     ColumnLayout {
                         spacing: 4
-                        Text { text: "FIRMWARE KERNEL"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
+                        Text { text: "KERNEL FIRMWARE"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
                         Text { text: device ? ("v" + device.firmwareVersion) : "v0307.0014"; color: ExpressiveTokens.textSurface; font.family: ExpressiveTokens.fontMono; font.pixelSize: 14; font.weight: Font.Bold }
                     }
 
@@ -256,7 +256,7 @@ Item {
 
                     ColumnLayout {
                         spacing: 4
-                        Text { text: "GÂCHETTE GAUCHE (L2)"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
+                        Text { text: "LEFT TRIGGER (L2)"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
                         Text { text: device ? device.leftTriggerSummary : "Standard"; color: ExpressiveTokens.primary; font.pixelSize: 13; font.weight: Font.Medium }
                     }
 
@@ -264,7 +264,7 @@ Item {
 
                     ColumnLayout {
                         spacing: 4
-                        Text { text: "GÂCHETTE DROITE (R2)"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
+                        Text { text: "RIGHT TRIGGER (R2)"; color: ExpressiveTokens.textSurfaceMuted; font.pixelSize: 11; font.weight: Font.Bold }
                         Text { text: device ? device.rightTriggerSummary : "Standard"; color: ExpressiveTokens.primary; font.pixelSize: 13; font.weight: Font.Medium }
                     }
                 }
