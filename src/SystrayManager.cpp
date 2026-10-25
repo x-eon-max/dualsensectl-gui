@@ -62,7 +62,7 @@ void SystrayManager::updateTooltip() {
                                .arg(dev->batteryPercent())
                                .arg(dev->batteryStatus()));
     } else {
-        m_trayIcon->setToolTip("DualSense Expressive (Aucun contrôleur)");
+        m_trayIcon->setToolTip("DualSense Expressive (No controller connected)");
     }
 }
 
@@ -79,41 +79,41 @@ void SystrayManager::updateTrayMenu() {
         m_menu->addSeparator();
 
         // Toggle Mic Mute
-        QAction *muteAct = m_menu->addAction(dev->micMuted() ? "🎙 Activer le microphone" : "🔇 Couper le microphone (Mute)");
+        QAction *muteAct = m_menu->addAction(dev->micMuted() ? "🎙 Unmute Microphone" : "🔇 Mute Microphone");
         connect(muteAct, &QAction::triggered, this, [this, dev]() {
             m_client->setMicMuted(!dev->micMuted());
         });
 
         // Quick colors
-        QMenu *colorMenu = m_menu->addMenu("🌈 Couleur Lightbar");
+        QMenu *colorMenu = m_menu->addMenu("🌈 Lightbar Color");
         auto addColor = [this, colorMenu](const QString &name, int r, int g, int b) {
             QAction *act = colorMenu->addAction(name);
             connect(act, &QAction::triggered, this, [this, r, g, b]() {
                 m_client->setLightbar(r, g, b, 255);
             });
         };
-        addColor("Bleu PS5", 0, 112, 209);
-        addColor("Cyan Néon", 0, 240, 255);
-        addColor("Rouge Cosmique", 255, 23, 68);
-        addColor("Violet Galactique", 168, 85, 247);
-        addColor("Vert Émeraude", 0, 230, 118);
-        addColor("Blanc Pur", 255, 255, 255);
+        addColor("PS5 Blue", 0, 112, 209);
+        addColor("Neon Cyan", 0, 240, 255);
+        addColor("Cosmic Red", 255, 23, 68);
+        addColor("Galactic Violet", 168, 85, 247);
+        addColor("Emerald Green", 0, 230, 118);
+        addColor("Pure White", 255, 255, 255);
 
         // Power off (if BT)
         if (dev->connectionType() == "Bluetooth" || m_client->isSimulationMode()) {
-            QAction *powerAct = m_menu->addAction("🔌 Éteindre la manette");
+            QAction *powerAct = m_menu->addAction("🔌 Turn Off Controller");
             connect(powerAct, &QAction::triggered, this, [this]() {
                 m_client->powerOff();
             });
         }
     } else {
-        QAction *noDevAct = m_menu->addAction("⚠️ Aucune manette connectée");
+        QAction *noDevAct = m_menu->addAction("⚠️ No controller connected");
         noDevAct->setEnabled(false);
     }
 
     // Profiles submenu
     if (m_profileMgr) {
-        QMenu *profMenu = m_menu->addMenu("⚡ Profils de Jeu");
+        QMenu *profMenu = m_menu->addMenu("⚡ Game Profiles");
         QVariantList profs = m_profileMgr->profiles();
         for (const auto &pVal : profs) {
             QString name = pVal.toMap()["name"].toString();
@@ -127,11 +127,11 @@ void SystrayManager::updateTrayMenu() {
     m_menu->addSeparator();
 
     // Show/Hide
-    QAction *toggleAct = m_menu->addAction("Afficher / Masquer");
+    QAction *toggleAct = m_menu->addAction("Show / Hide");
     connect(toggleAct, &QAction::triggered, this, [this]() {
         onTrayActivated(QSystemTrayIcon::Trigger);
     });
 
-    QAction *quitAct = m_menu->addAction("Quitter");
+    QAction *quitAct = m_menu->addAction("Quit");
     connect(quitAct, &QAction::triggered, qApp, &QCoreApplication::quit);
 }

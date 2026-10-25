@@ -58,7 +58,7 @@ void DualSenseClient::setSimulationMode(bool sim) {
 
 void DualSenseClient::toggleSimulationMode() {
     setSimulationMode(!m_simulationMode);
-    emit toastRequested(m_simulationMode ? "Mode Démo / Simulation activé" : "Recherche de contrôleur physique...", "info");
+    emit toastRequested(m_simulationMode ? "Simulation / Demo mode activated" : "Scanning for physical controllers...", "info");
 }
 
 DualSenseClient::ExecResult DualSenseClient::runCli(const QStringList &args, const QString &deviceId) {
@@ -72,7 +72,7 @@ DualSenseClient::ExecResult DualSenseClient::runCli(const QStringList &args, con
     }
 
     if (!isInstalled()) {
-        res.stdErr = "dualsensectl introuvable sur le système.";
+        res.stdErr = "dualsensectl not found on system.";
         return res;
     }
 
@@ -85,13 +85,13 @@ DualSenseClient::ExecResult DualSenseClient::runCli(const QStringList &args, con
     QProcess process;
     process.start(m_executablePath, fullArgs);
     if (!process.waitForStarted(2000)) {
-        res.stdErr = "Impossible de lancer dualsensectl.";
+        res.stdErr = "Failed to launch dualsensectl.";
         return res;
     }
 
     if (!process.waitForFinished(4000)) {
         process.kill();
-        res.stdErr = "Timeout lors de l'exécution de dualsensectl.";
+        res.stdErr = "Timeout executing dualsensectl.";
         return res;
     }
 
@@ -109,7 +109,7 @@ void DualSenseClient::populateSimulatedDevice() {
 
     DualSenseDevice *sim = new DualSenseDevice(this);
     sim->setId("sim-hidraw0");
-    sim->setName("DualSense Edge (Simulateur M3)");
+    sim->setName("DualSense Edge (M3 Simulator)");
     sim->setConnectionType("Bluetooth");
     sim->setBatteryPercent(88);
     sim->setBatteryStatus("discharging");
@@ -155,7 +155,7 @@ void DualSenseClient::rescan() {
         m_simulationMode = true;
         emit simulationModeChanged();
         populateSimulatedDevice();
-        emit toastRequested("Aucun DualSense physique détecté : Mode Simulation activé", "info");
+        emit toastRequested("No physical DualSense detected: Demo mode activated", "info");
         return;
     }
 
@@ -177,7 +177,7 @@ void DualSenseClient::rescan() {
     emit devicesChanged();
     emit activeIndexChanged();
     emit activeDeviceChanged();
-    emit toastRequested(QString("%1 manette(s) DualSense connectée(s)").arg(m_devices.size()), "success");
+    emit toastRequested(QString("%1 DualSense controller(s) connected").arg(m_devices.size()), "success");
 }
 
 void DualSenseClient::updateBatteryForDevice(DualSenseDevice *device) {
@@ -305,7 +305,7 @@ bool DualSenseClient::setMicMuted(bool muted) {
     dev->setMicLedState(muted ? "on" : "off");
     runCli(argsLed, dev->id());
 
-    emit toastRequested(muted ? "Microphone muet (LED orange allumée)" : "Microphone actif", muted ? "warning" : "success");
+    emit toastRequested(muted ? "Microphone muted (Amber LED on)" : "Microphone active", muted ? "warning" : "success");
     return true;
 }
 
@@ -388,17 +388,17 @@ bool DualSenseClient::setTriggerOff(const QString &target) {
 
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("off");
-        dev->setLeftTriggerSummary("Standard / Aucun effet");
+        dev->setLeftTriggerSummary("Standard / No effect");
     }
     if (tgt == "right" || tgt == "both") {
         dev->setRightTriggerMode("off");
-        dev->setRightTriggerSummary("Standard / Aucun effet");
+        dev->setRightTriggerSummary("Standard / No effect");
     }
 
     QStringList args;
     args << "trigger" << tgt << "off";
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested("Gâchettes réinitialisées (Off)", "info");
+    emit toastRequested("Triggers reset (Off)", "info");
     return res.success();
 }
 
@@ -412,7 +412,7 @@ bool DualSenseClient::setTriggerFeedback(const QString &target, int position, in
     position = qBound(0, position, 9);
     strength = qBound(1, strength, 8);
 
-    QString summary = QString("Feedback (Position %1, Force %2)").arg(position).arg(strength);
+    QString summary = QString("Feedback (Position %1, Strength %2)").arg(position).arg(strength);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("feedback");
         dev->setLeftTriggerSummary(summary);
@@ -425,7 +425,7 @@ bool DualSenseClient::setTriggerFeedback(const QString &target, int position, in
     QStringList args;
     args << "trigger" << tgt << "feedback" << QString::number(position) << QString::number(strength);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Feedback appliqué (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Feedback applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -440,7 +440,7 @@ bool DualSenseClient::setTriggerWeapon(const QString &target, int start, int sto
     int stopVal = qBound(startVal + 1, stop, 8);
     int strVal = qBound(1, strength, 8);
 
-    QString summary = QString("Arme à feu (%1-%2, Dureté %3)").arg(startVal).arg(stopVal).arg(strVal);
+    QString summary = QString("Weapon (%1-%2, Strength %3)").arg(startVal).arg(stopVal).arg(strVal);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("weapon");
         dev->setLeftTriggerSummary(summary);
@@ -453,7 +453,7 @@ bool DualSenseClient::setTriggerWeapon(const QString &target, int start, int sto
     QStringList args;
     args << "trigger" << tgt << "weapon" << QString::number(startVal) << QString::number(stopVal) << QString::number(strVal);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Arme (Weapon) appliquée (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Weapon effect applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -469,7 +469,7 @@ bool DualSenseClient::setTriggerBow(const QString &target, int start, int stop, 
     int strVal = qBound(1, strength, 8);
     int snapVal = qBound(1, snapforce, 8);
 
-    QString summary = QString("Arc élastique (%1-%2, Tension %3, Relâche %4)").arg(startVal).arg(stopVal).arg(strVal).arg(snapVal);
+    QString summary = QString("Bow (%1-%2, Tension %3, Snap %4)").arg(startVal).arg(stopVal).arg(strVal).arg(snapVal);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("bow");
         dev->setLeftTriggerSummary(summary);
@@ -482,7 +482,7 @@ bool DualSenseClient::setTriggerBow(const QString &target, int start, int stop, 
     QStringList args;
     args << "trigger" << tgt << "bow" << QString::number(startVal) << QString::number(stopVal) << QString::number(strVal) << QString::number(snapVal);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Arc (Bow) appliqué (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Bow effect applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -499,7 +499,7 @@ bool DualSenseClient::setTriggerGalloping(const QString &target, int start, int 
     int f2 = qBound(f1 + 1, foot2, 8);
     int f = qBound(1, freq, 20);
 
-    QString summary = QString("Galop rythmique (Battements %1/%2 @ %3Hz)").arg(f1).arg(f2).arg(f);
+    QString summary = QString("Galloping (Beats %1/%2 @ %3Hz)").arg(f1).arg(f2).arg(f);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("galloping");
         dev->setLeftTriggerSummary(summary);
@@ -512,7 +512,7 @@ bool DualSenseClient::setTriggerGalloping(const QString &target, int start, int 
     QStringList args;
     args << "trigger" << tgt << "galloping" << QString::number(startVal) << QString::number(stopVal) << QString::number(f1) << QString::number(f2) << QString::number(f);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Galop appliqué (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Galloping applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -530,7 +530,7 @@ bool DualSenseClient::setTriggerMachine(const QString &target, int start, int st
     int f = qBound(1, freq, 40);
     int p = qBound(1, period, 20);
 
-    QString summary = QString("Mitrailleuse (%1-%2, Forces %3/%4, %5Hz)").arg(startVal).arg(stopVal).arg(sA).arg(sB).arg(f);
+    QString summary = QString("Machine (%1-%2, Forces %3/%4, %5Hz)").arg(startVal).arg(stopVal).arg(sA).arg(sB).arg(f);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("machine");
         dev->setLeftTriggerSummary(summary);
@@ -543,7 +543,7 @@ bool DualSenseClient::setTriggerMachine(const QString &target, int start, int st
     QStringList args;
     args << "trigger" << tgt << "machine" << QString::number(startVal) << QString::number(stopVal) << QString::number(sA) << QString::number(sB) << QString::number(f) << QString::number(p);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Mitrailleuse (Machine) appliquée (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Machine effect applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -558,7 +558,7 @@ bool DualSenseClient::setTriggerVibration(const QString &target, int pos, int am
     int a = qBound(1, amp, 8);
     int f = qBound(1, freq, 40);
 
-    QString summary = QString("Vibration continue (Pos %1, Amp %2, %3Hz)").arg(p).arg(a).arg(f);
+    QString summary = QString("Continuous Vibration (Pos %1, Amp %2, %3Hz)").arg(p).arg(a).arg(f);
     if (tgt == "left" || tgt == "both") {
         dev->setLeftTriggerMode("vibration");
         dev->setLeftTriggerSummary(summary);
@@ -571,7 +571,7 @@ bool DualSenseClient::setTriggerVibration(const QString &target, int pos, int am
     QStringList args;
     args << "trigger" << tgt << "vibration" << QString::number(p) << QString::number(a) << QString::number(f);
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested(QString("Vibration de gâchette appliquée (%1)").arg(tgt), "success");
+    emit toastRequested(QString("Trigger vibration applied (%1)").arg(tgt), "success");
     return res.success();
 }
 
@@ -580,14 +580,14 @@ bool DualSenseClient::powerOff() {
     if (!dev) return false;
 
     if (dev->connectionType() != "Bluetooth" && !m_simulationMode) {
-        emit toastRequested("L'extinction matérielle n'est possible qu'en Bluetooth.", "warning");
+        emit toastRequested("Hardware power-off is only supported over Bluetooth.", "warning");
         return false;
     }
 
     QStringList args;
     args << "power-off";
     ExecResult res = runCli(args, dev->id());
-    emit toastRequested("Manette DualSense éteinte.", "info");
+    emit toastRequested("DualSense controller powered off.", "info");
 
     if (m_simulationMode) {
         dev->setBatteryStatus("disconnected");

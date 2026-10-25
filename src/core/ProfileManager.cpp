@@ -31,7 +31,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "Competitive FPS";
-        p["description"] = "Gâchette coup sec instantané (Hair trigger), vibration atténuée pour la visée, micro coupé";
+        p["description"] = "Hair-trigger break stop, attenuated rumble for aiming precision, mic muted";
         p["accentColor"] = "#FF1744";
         p["icon"] = "crosshair";
         p["lightbarR"] = 255; p["lightbarG"] = 23; p["lightbarB"] = 68; p["brightness"] = 255;
@@ -46,7 +46,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "Sim Racing Pro";
-        p["description"] = "Résistance pédale de frein ferme (L2) et tension accélérateur progressif (R2)";
+        p["description"] = "Firm brake pedal resistance (L2) and progressive throttle spring tension (R2)";
         p["accentColor"] = "#00F0FF";
         p["icon"] = "steering-wheel";
         p["lightbarR"] = 0; p["lightbarG"] = 240; p["lightbarB"] = 255; p["brightness"] = 255;
@@ -60,7 +60,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "RPG Hunter & Bow";
-        p["description"] = "Tension progressive de corde d'arc avec relâchement sec (Snap force)";
+        p["description"] = "Progressive bowstring draw tension with crisp snap force release";
         p["accentColor"] = "#00E676";
         p["icon"] = "bow";
         p["lightbarR"] = 0; p["lightbarG"] = 230; p["lightbarB"] = 118; p["brightness"] = 220;
@@ -75,7 +75,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "Heavy Gunner (Machine)";
-        p["description"] = "Cadence de tir saccadée haute fréquence et retour haptique maximal";
+        p["description"] = "High-frequency machine recoil bursts and full tactile haptic feedback";
         p["accentColor"] = "#FF9100";
         p["icon"] = "flame";
         p["lightbarR"] = 255; p["lightbarG"] = 145; p["lightbarB"] = 0; p["brightness"] = 255;
@@ -90,7 +90,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "Cinematic Immersion";
-        p["description"] = "Ambiance violette cosmique, haptique riche et gâchettes douces";
+        p["description"] = "Cosmic violet ambient aura, rich haptics and smooth subtle triggers";
         p["accentColor"] = "#A855F7";
         p["icon"] = "sparkles";
         p["lightbarR"] = 168; p["lightbarG"] = 85; p["lightbarB"] = 247; p["brightness"] = 180;
@@ -105,7 +105,7 @@ void ProfileManager::initDefaultProfiles() {
     {
         QVariantMap p;
         p["name"] = "Stealth Battery Saver";
-        p["description"] = "LEDs éteintes, micro muet, gâchettes désactivées pour autonomie maximale";
+        p["description"] = "LEDs turned off, mic muted, triggers disabled for maximum battery life";
         p["accentColor"] = "#64748B";
         p["icon"] = "battery";
         p["lightbarR"] = 0; p["lightbarG"] = 0; p["lightbarB"] = 0; p["brightness"] = 0;
@@ -199,7 +199,7 @@ void ProfileManager::applyProfile(const QString &name) {
                 m_client->setTriggerBow("right", 0, 8, 4, 6); // Throttle spring tension
             }
 
-            emit m_client->toastRequested(QString("Profil appliqué : %1").arg(name), "success");
+            emit m_client->toastRequested(QString("Profile applied: %1").arg(name), "success");
             return;
         }
     }
@@ -213,7 +213,7 @@ void ProfileManager::saveProfile(const QString &name, const QString &description
 
     QVariantMap p;
     p["name"] = name.trimmed();
-    p["description"] = description.isEmpty() ? "Profil personnalisé" : description;
+    p["description"] = description.isEmpty() ? "Custom user profile" : description;
     p["accentColor"] = accentColor.isEmpty() ? "#7B5CFF" : accentColor;
     p["icon"] = "custom";
 
@@ -243,7 +243,7 @@ void ProfileManager::saveProfile(const QString &name, const QString &description
 
     saveToFile();
     emit profilesChanged();
-    emit m_client->toastRequested(QString("Profil sauvegardé : %1").arg(name), "success");
+    emit m_client->toastRequested(QString("Profile saved: %1").arg(name), "success");
 }
 
 void ProfileManager::deleteProfile(const QString &name) {
@@ -253,7 +253,7 @@ void ProfileManager::deleteProfile(const QString &name) {
             saveToFile();
             emit profilesChanged();
             if (m_client) {
-                emit m_client->toastRequested(QString("Profil supprimé : %1").arg(name), "info");
+                emit m_client->toastRequested(QString("Profile deleted: %1").arg(name), "info");
             }
             return;
         }
