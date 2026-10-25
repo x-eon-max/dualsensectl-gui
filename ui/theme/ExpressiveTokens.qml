@@ -39,7 +39,7 @@ QtObject {
     readonly property color colorWarning: "#FF8C00"
 
     readonly property color successColor: "#00E676"         // Emerald Connected
-    readonly property property colorSuccess: "#00E676"
+    readonly property color colorSuccess: "#00E676"
 
     readonly property color errorColor: "#FF5449"
     readonly property color colorError: "#FF5449"

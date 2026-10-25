@@ -37,6 +37,18 @@ Item {
         anchors.fill: parent
         renderStrategy: Canvas.Threaded
 
+        function drawRoundRect(ctx, x, y, w, h, r) {
+            if (w < 2 * r) r = w / 2;
+            if (h < 2 * r) r = h / 2;
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x, y, r);
+            ctx.closePath();
+        }
+
         onPaint: {
             var ctx = getContext("2d")
             ctx.clearRect(0, 0, width, height)
@@ -52,13 +64,11 @@ Item {
 
             // Top Bumpers (L1/L2 and R1/R2)
             ctx.fillStyle = (root.activeTrigger === "left" || root.activeTrigger === "both") ? "#388BFF" : "#1A1D2E"
-            ctx.beginPath()
-            ctx.roundRect(-130, -100, 50, 22, [10, 10, 0, 0])
+            drawRoundRect(ctx, -130, -100, 50, 22, 8)
             ctx.fill()
 
             ctx.fillStyle = (root.activeTrigger === "right" || root.activeTrigger === "both") ? "#388BFF" : "#1A1D2E"
-            ctx.beginPath()
-            ctx.roundRect(80, -100, 50, 22, [10, 10, 0, 0])
+            drawRoundRect(ctx, 80, -100, 50, 22, 8)
             ctx.fill()
 
             // Outer Shell (PlayStation 5 Crisp White)
@@ -96,8 +106,7 @@ Item {
             ctx.fill()
 
             // Touchpad Rect
-            ctx.beginPath()
-            ctx.roundRect(-48, -72, 96, 56, 8)
+            drawRoundRect(ctx, -48, -72, 96, 56, 8)
             ctx.fillStyle = "#1A1D2E"
             ctx.fill()
             ctx.lineWidth = 1
@@ -147,8 +156,7 @@ Item {
             }
 
             // Mic Mute Button LED (Amber when muted)
-            ctx.beginPath()
-            ctx.roundRect(-7, -4, 14, 6, 3)
+            drawRoundRect(ctx, -7, -4, 14, 6, 3)
             ctx.fillStyle = root.micMuted ? "#FF8C00" : "#2C314C"
             ctx.fill()
 
