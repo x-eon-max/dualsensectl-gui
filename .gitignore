@@ -81,4 +81,6 @@ CMakeCache.txt
 *.a
 *.so
 .qmake.stash
+dualsense-expressive
+dualsensectl-gui
 
